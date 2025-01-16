@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>{{title}}</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Side Menu -->
+        <aside class="side-menu">
+            <h3>Crops</h3>
+            <ul>
+                {{#each crops}}
+                <li><a href="/crops/{{_id}}">{{name}}</a></li>
+                {{/each}}
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="content">
+            {{{body}}} <!-- Content of individual pages -->
+        </main>
+    </div>
+</body>
+</html>

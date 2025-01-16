@@ -1,0 +1,21 @@
+<h1>{{name}}</h1>
+<img src="{{image}}" alt="{{name}}">
+<p>{{description}}</p>
+<h2>Health Status</h2>
+<ul>
+  {{#each healthStatuses}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>
+<h2>Common Diseases</h2>
+<ul>
+  {{#each diseases}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>
+<h2>Tips for Growing</h2>
+<ul>
+  {{#each tips}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>
