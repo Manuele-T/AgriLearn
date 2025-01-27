@@ -7,21 +7,23 @@
     <title>{{title}}</title>
 </head>
 <body>
-    <div class="container">
-        <!-- Left Side Menu -->
-        <aside class="side-menu">
-            <h3>Crops</h3>
-            <ul>
-                {{#each crops}}
-                <li><a href="/crops/{{_id}}">{{name}}</a></li>
-                {{/each}}
-            </ul>
-        </aside>
+    <div class="outer-container">
+        <div class="container">
+            <!-- Left Side Menu -->
+            <aside class="side-menu">
+                <h3>Crops</h3>
+                <ul>
+                    {{#each crops}}
+                    <li><a href="/crops/{{_id}}">{{name}}</a></li>
+                    {{/each}}
+                </ul>
+            </aside>
 
-        <!-- Main Content Area -->
-        <main class="content">
-            {{{body}}} <!-- Content of individual pages -->
-        </main>
+            <!-- Main Content Area -->
+            <main class="content">
+                {{{body}}} <!-- Content of individual pages -->
+            </main>
+        </div>
     </div>
 </body>
 </html>

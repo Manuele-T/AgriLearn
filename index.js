@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const routes = require("./routes/routes.js");
-const cropsDB = require("./models/cropModel.js"); // Corrected path to cropModel.js
+const cropsDB = require("./models/cropModel.js"); // Use require for CommonJS
 
 // Configure Handlebars
 const expressHandlebars = require("express-handlebars");

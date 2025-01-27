@@ -1,3 +1,6 @@
 <h1>Welcome to AgriLearnPal</h1>
 <p>Analyze your crop images or explore available crops using the side menu!</p>
-<a href="/upload" class="btn">Upload Picture</a>
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="image" required>
+    <button type="submit" class="btn">Upload Picture</button>
+</form>
