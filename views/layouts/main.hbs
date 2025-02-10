@@ -7,10 +7,15 @@
     <title>{{title}}</title>
 </head>
 <body>
+    <!-- Include Header -->
+    {{> header}}
     <div class="outer-container">
         <div class="container">
+            <!-- Sidebar Toggle Button -->
+            <button class="toggle-btn" onclick="toggleSidebar()">☰ Crops</button>
+
             <!-- Left Side Menu -->
-            <aside class="side-menu">
+            <aside class="side-menu" id="sidebar">
                 <h3>Crops</h3>
                 <ul>
                     {{#each crops}}
@@ -25,5 +30,13 @@
             </main>
         </div>
     </div>
+
+    <!-- Add JavaScript -->
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
 </body>
 </html>

@@ -12,7 +12,7 @@ const hbs = expressHandlebars.create({
     helpers: {
         eq: (v1, v2) => v1 === v2,
     },
-    partialsDir: path.join(__dirname, "views", "partial"),
+    partialsDir: path.join(__dirname, "views", "partials"),
 });
 app.engine(".hbs", hbs.engine);
 app.set("view engine", ".hbs");
