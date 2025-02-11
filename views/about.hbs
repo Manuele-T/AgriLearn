@@ -5,18 +5,39 @@
         <p>Who we are</p>
     </div>
     <div class="hero-image">
-        <img src="/img/aboutus.jpg">
+        <img src="/img/aboutus.jpg" alt="Home page">
     </div>
 </div>
 
-<!-- Main Content Wrapper -->
+<!-- Main Content -->
 <div class="content">
-    <h1>Analyze Your Crops</h1>
-    <p>Analyze your crop images or explore available crops using the side menu!</p>
+    
+    <!-- Section 1: Text Left, Image Right -->
+    <section class="content-section">
+        <div class="text-content">
+            <p>
+                AgriLearnPal is an honours project developed as part of a student’s final year research in computing.
+                This project was created with the goal of combining machine learning and web technologies to provide 
+                an interactive and educational platform for crop analysis.
+            </p>
+        </div>
+        <div class="image-content">
+            <img src="/img/aboutus01.jpg" alt="About AgriLearnPal">
+        </div>
+    </section>
 
-    <!-- Upload Form -->
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" required>
-        <button type="submit" class="btn">Upload Picture</button>
-    </form>
+    <!-- Section 2: Image Left, Text Right -->
+    <section class="content-section reverse">
+        <div class="text-content">
+            <p>
+                The idea behind this project emerged from the growing role of digital tools in education. 
+                With agriculture being a crucial yet often overlooked subject in modern learning, this 
+                platform was designed to help students and enthusiasts explore crops, analyze plant health, 
+                and gain valuable insights through an easy-to-use web application.
+            </p>
+        </div>
+        <div class="image-content">
+            <img src="/img/aboutus01.jpg" alt="Agricultural Technology">
+        </div>
+    </section>
 </div>
