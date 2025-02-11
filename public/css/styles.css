@@ -1,18 +1,67 @@
+/* Reset styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('/img/background.jpeg'); /* Path to your image */
-    background-size: cover; /* Ensures the image covers the entire background */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    background-attachment: fixed; /* Keeps the image fixed when scrolling */
-    background-position: center; /* Centers the image */
+    background: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
+
+/* Main flex container for sidebar + content */
+.layout-container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: calc(100vh - 60px); /* Adjust height (60px for header) */
+}
+
+/* Sidebar */
+.side-menu {
+    width: 100px; /* Fixed width */
+    background-color: rgba(213, 210, 210, 0.9);
+    padding: 20px;
+    height: 100%; /* Full height */
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(71, 67, 67, 0.1);
+}
+
+/* Sidebar hidden class for toggling */
+.hidden {
+    display: none;
+}
+
+/* Main content area */
+.content {
+    flex: 1; /* Take remaining space */
+    padding: 20px;
+    background: white;
+    overflow-y: auto; /* Enable scrolling */
+}
+
+.toggle-btn {
+    position: fixed;  /* Keeps the button fixed on the screen */
+    top: 40px;
+    left: 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000; /* Ensures it's always on top */
+}
+
+.toggle-btn:hover {
+    background-color: #0056b3;
+}
+
 
 .outer-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     min-height: 100vh; /* Full viewport height */
     padding: 20px; /* Optional: Adds a bit of space inside */
 }
@@ -35,23 +84,6 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     overflow: hidden;
 }
-
-
-.side-menu {
-    width: 100px; /* Fixed width for the side menu */
-    background-color: rgba(244, 244, 244, 0.9); /* Slight transparency */
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow on the right edge */
-}
-
-.content {
-    flex: 1; /* Let the content fill the remaining space */
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.9); /* Keep a solid background */
-    border-radius: 8px; /* Rounded corners */
-}
-
-
 
 .navbar-nav .nav-item {
     margin: 0 10px; /* Add spacing between navigation items */
@@ -106,26 +138,9 @@ body {
     color: #007BFF; /* Highlight link color on hover */
 }
 
-.toggle-btn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000; /* Ensures it's always on top */
-}
-
-.toggle-btn:hover {
-    background-color: #0056b3;
-}
-
 .sidebar-container {
     display: flex;
     flex-direction: column; /* Stack items vertically */
     align-items: flex-start; /* Align to the left */
-    width: 250px; /* Same width as the sidebar */
+    width: 100px; /* Same width as the sidebar */
 }
