@@ -7,10 +7,12 @@ const homeController = require(path.join(__dirname, '../controllers/homeControll
 const cropController = require(path.join(__dirname, '../controllers/cropController'));
 const resultController = require(path.join(__dirname, '../controllers/resultController'));
 
-// Home route
-router.get('/', homeController.getHomePage);
+// Home route with Hero Section
+router.get('/', (req, res) => {
+    res.render('home', { heroImage: '/img/home.jpg' });
+});
 
-// Static pages (no controller needed)
+// Static pages (no Hero by default)
 router.get('/about', (req, res) => res.render('about'));
 router.get('/mission', (req, res) => res.render('mission'));
 router.get('/agricultureUK', (req, res) => res.render('agricultureUK'));
@@ -23,4 +25,3 @@ router.get('/crops/:cropId', cropController.getCropDetails);
 router.post('/upload', resultController.uploadImage);
 
 module.exports = router;
-

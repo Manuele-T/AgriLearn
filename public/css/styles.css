@@ -1,3 +1,10 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
 /* Reset styles */
 body {
     font-family: Arial, sans-serif;
@@ -9,96 +16,62 @@ body {
     height: 100vh;
 }
 
-/* Main flex container for sidebar + content */
-.layout-container {
+/* Container for hero + content */
+.content-container {
+    flex: 1; /* Take remaining space */
     display: flex;
-    flex: 1;
+    flex-direction: column; /* Stack hero above content */
+}
+
+/* Hero section */
+.hero {
     width: 100%;
-    height: calc(100vh - 60px); /* Adjust height (60px for header) */
+    height: 350px;
+    background-color: #037f45fa;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Pushes text left, image right */
+    color: white;
+    padding-left: 20px; /* Ensures content does not overflow */
+    text-align: left;
+    overflow: hidden; /* Ensures nothing spills outside */
 }
 
-/* Sidebar */
-.side-menu {
-    width: 100px; /* Fixed width */
-    background-color: rgba(213, 210, 210, 0.9);
-    padding: 20px;
-    height: 100%; /* Full height */
-    overflow-y: auto;
-    box-shadow: 2px 0 5px rgba(71, 67, 67, 0.1);
+/* Image container on the right */
+.hero-image {
+    height: 100%; /* Ensures it fills the full height */
+    display: flex;
+    align-items: center;
+    justify-content: right; /* Pushes the image fully to the right */
+    margin: 0; /* Removes any unwanted spacing */
+    padding-right: 0; /* Ensures no padding issues */
 }
 
-/* Sidebar hidden class for toggling */
-.hidden {
-    display: none;
+/* Image styling */
+.hero-image img {
+    height: 100%; /* Ensures it fully fits within hero height */
+    width: auto; /* Keeps aspect ratio */
+    object-fit: cover;
+    display: block; /* Ensures no extra spacing issues */
+    max-width: 100%; /* Prevents overflow */
+}
+
+
+/* Hero content on the left */
+.hero-content {
+    max-width: 60%; /* Adjust as needed */
+    font-size: 24px;
 }
 
 /* Main content area */
 .content {
-    flex: 1; /* Take remaining space */
-    padding: 20px;
+    width:100%; /* Take remaining space */
+    padding-left: 20px;
     background: white;
     overflow-y: auto; /* Enable scrolling */
 }
 
-.toggle-btn {
-    position: fixed;  /* Keeps the button fixed on the screen */
-    top: 40px;
-    left: 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000; /* Ensures it's always on top */
-}
-
-.toggle-btn:hover {
-    background-color: #0056b3;
-}
-
-
-.outer-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    min-height: 100vh; /* Full viewport height */
-    padding: 20px; /* Optional: Adds a bit of space inside */
-}
-
-.content-container {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    justify-content: center; /* Centers content horizontally */
-    align-items: center; /* Centers content vertically */
-}
-
-.container {
-    display: flex;
-    width: 95%; /* Adjust width to make it wider */
-    height: 85vh; /* Increase height to make it thicker */
-    margin: 20px auto; /* Center the container */
-    background: #fff; /* Solid white for the container */
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    overflow: hidden;
-}
-
-.navbar-nav .nav-item {
-    margin: 0 10px; /* Add spacing between navigation items */
-}
-
-.navbar-nav .nav-link {
-    text-decoration: none; /* Remove underlines */
-    color: #000; /* Set text color */
-    font-weight: bold; /* Optional: Make text bold */
-}
-
-.navbar-nav .nav-link:hover {
-    color: #007BFF; /* Change color on hover */
-}
-
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: center; /* Center content horizontally */
@@ -109,6 +82,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for a clean look */
 }
 
+/* Navbar links */
 .navbar-nav {
     display: flex;
     gap: 20px; /* Add spacing between items */
@@ -138,6 +112,7 @@ body {
     color: #007BFF; /* Highlight link color on hover */
 }
 
+/* Sidebar container */
 .sidebar-container {
     display: flex;
     flex-direction: column; /* Stack items vertically */

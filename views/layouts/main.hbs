@@ -1,41 +1,19 @@
+<!-- main.hbs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css">
-    <title>{{title}}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>{{title}}</title>
 </head>
 <body>
-    <!-- Include Header -->
-    {{> header}}
+  {{> header}}
 
-    <div class="layout-container">
-        <!-- Sidebar -->
-        <aside class="side-menu" id="sidebar">
-            <h3>Crops</h3>
-            <ul>
-                {{#each crops}}
-                <li><a href="/crops/{{_id}}">{{name}}</a></li>
-                {{/each}}
-            </ul>
-        </aside>
-
-        <!-- Main Content Area -->
-        <main class="content">
-            {{{body}}} <!-- Content of individual pages -->
-        </main>
-    </div>
-
-    <!-- Sidebar Toggle Button (placed above the sidebar, outside of it) -->
-    <button class="toggle-btn" onclick="toggleSidebar()">Hide/Show</button>
-
-    <!-- JavaScript for Sidebar Toggle -->
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('hidden');
-        }
-    </script>
+  <!-- Optional container for main content styling -->
+  <div class="content-container">
+    {{{body}}}
+  </div>
+  
 </body>
 </html>
