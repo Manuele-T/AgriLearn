@@ -14,9 +14,10 @@ router.get('/', (req, res) => {
 
 // Static pages (no Hero by default)
 router.get('/about', (req, res) => res.render('about'));
-router.get('/mission', (req, res) => res.render('mission'));
 router.get('/agricultureUK', (req, res) => res.render('agricultureUK'));
 router.get('/tips', (req, res) => res.render('tips'));
+router.get('/analyse', (req, res) => res.render('analyse'));
+
 
 // Crop details route
 router.get('/crops/:cropId', cropController.getCropDetails);

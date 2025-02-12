@@ -2,9 +2,9 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* Body Styling */
@@ -26,14 +26,16 @@ body {
 /* Hero Section */
 .hero {
     width: 100%;
-    height: 250px;
+    height: 200px;
     background-color: #037f45fa;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: white;
-    padding-left: 20px; /* Adds equal left-right spacing */
-    padding-right: 20px; /* Adds equal left-right spacing */
+    padding-left: 20px;
+    /* Adds equal left-right spacing */
+    padding-right: 20px;
+    /* Adds equal left-right spacing */
     text-align: left;
     overflow: hidden;
 }
@@ -54,8 +56,10 @@ body {
 
 .hero-image img {
     height: 100%;
-    width: 100%;  /* Ensures full width */
-    object-fit: cover; /* Ensures it covers the hero container */
+    width: 100%;
+    /* Ensures full width */
+    object-fit: cover;
+    /* Ensures it covers the hero container */
     display: block;
 }
 
@@ -63,7 +67,8 @@ body {
 /* Main Content */
 .content {
     width: 100%;
-    padding: 20px 100px; /* Ensures left and right spacing */
+    padding: 20px 100px;
+    /* Ensures left and right spacing */
 }
 
 /* Navigation Bar */
@@ -117,7 +122,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 100px; /* Adds spacing */
+    padding: 20px 100px;
+    /* Adds spacing */
     width: 100%;
 }
 
@@ -147,9 +153,11 @@ body {
 /* Image Styling */
 .image-content img {
     width: 100%;
-    max-width: 300px; /* Controls max width */
+    max-width: 300px;
+    /* Controls max width */
     height: auto;
-    max-height: 300px; /* Prevents excessive height */
+    max-height: 300px;
+    /* Prevents excessive height */
     object-fit: contain;
 }
 
@@ -160,16 +168,22 @@ body {
 
 .clickable-container {
     display: flex;
-    flex-wrap: wrap; /* Allows wrapping if needed */
-    justify-content: center; /* Centers boxes */
-    gap: 20px; /* Spacing between boxes */
-    padding: 10px 10px; /* Page padding */
+    flex-wrap: wrap;
+    /* Allows wrapping if needed */
+    justify-content: center;
+    /* Centers boxes */
+    gap: 20px;
+    /* Spacing between boxes */
+    padding: 10px 10px;
+    /* Page padding */
 }
 
 .clickable-box {
-    width: 200px; /* Fixed width */
-    height: auto; /* Auto height for dynamic text */
-  /*  background-color: #037f45; */
+    width: 200px;
+    /* Fixed width */
+    height: auto;
+    /* Auto height for dynamic text */
+    /*  background-color: #037f45; */
     color: #037f45;
     text-align: center;
     padding: 15px;
@@ -195,41 +209,166 @@ body {
 
 /* Intro Text Styling */
 .intro-text {
-    text-align: center;          /* Centers the text */
-    font-size: 18px;             /* Slightly larger for readability */
-    font-weight: 500;            /* Medium weight for balance */
-    font-style: italic;          /* Adds a refined look */
-    color: #444;                 /* Dark gray for readability */
-    padding: 5px;               /* Adds spacing */
-   /* background-color: #e2dcdc;   /* Light background to make it stand out */
-    border-left: 3px solid #037f45; /* Green left border for emphasis */
-    border-radius: 5px;          /* Soft edges */
-    max-width: 80%;              /* Keeps it from being too wide */
-    margin: 20px auto;           /* Centers it within the page */
-    line-height: 1.5;            /* Improves readability */
+    text-align: center;
+    /* Centers the text */
+    font-size: 18px;
+    /* Slightly larger for readability */
+    font-weight: 500;
+    /* Medium weight for balance */
+    font-style: italic;
+    /* Adds a refined look */
+    color: #444;
+    /* Dark gray for readability */
+    padding: 5px;
+    /* Adds spacing */
+    /* background-color: #e2dcdc;   /* Light background to make it stand out */
+    border-left: 3px solid #037f45;
+    /* Green left border for emphasis */
+    border-right: 3px solid #037f45;
+    /* Green left border for emphasis */
+    border-radius: 5px;
+    /* Soft edges */
+    max-width: 80%;
+    /* Keeps it from being too wide */
+    margin: 20px auto;
+    /* Centers it within the page */
+    line-height: 1.5;
+    /* Improves readability */
 }
 
+/* Intro Text Styling */
+.main-text {
+    text-align: justify;
+    font-size: 18px;
+    /* Slightly larger for readability */
+    font-weight: 500;
+    /* Medium weight for balance */
+    font-style: normal;
+    /* Adds a refined look */
+    color: #444;
+    /* Dark gray for readability */
+    padding: 5px;
+    /* Adds spacing */
+    /* background-color: #e2dcdc;   /* Light background to make it stand out */
+    border-radius: 5px;
+    /* Soft edges */
+    max-width: 80%;
+    /* Keeps it from being too wide */
+    margin: 20px auto;
+    /* Centers it within the page */
+    line-height: 1.5;
+    /* Improves readability */
+}
+
+.intro-text-left {
+    text-align: center;
+    /* Centers the text */
+    font-size: 18px;
+    /* Slightly larger for readability */
+    font-weight: 500;
+    /* Medium weight for balance */
+    font-style: italic;
+    /* Adds a refined look */
+    color: #444;
+    /* Dark gray for readability */
+    padding: 5px;
+    /* Adds spacing */
+    /* background-color: #e2dcdc;   /* Light background to make it stand out */
+    border-left: 3px solid #037f45;
+    /* Green left border for emphasis */
+    border-radius: 5px;
+    /* Soft edges */
+    max-width: 80%;
+    /* Keeps it from being too wide */
+    margin: 20px auto;
+    /* Centers it within the page */
+    line-height: 1.5;
+    /* Improves readability */
+}
+
+
 .intro-text-right {
-    text-align: center;          /* Centers the text */
-    font-size: 18px;             /* Slightly larger for readability */
-    font-weight: 500;            /* Medium weight for balance */
-    font-style: italic;          /* Adds a refined look */
-    color: #444;                 /* Dark gray for readability */
-    padding: 5px;               /* Adds spacing */
-   /* background-color: #e2dcdc;   /* Light background to make it stand out */
-    border-right: 3px solid #037f45; /* Green left border for emphasis */
-    border-radius: 5px;          /* Soft edges */
-    max-width: 80%;              /* Keeps it from being too wide */
-    margin: 20px auto;           /* Centers it within the page */
-    line-height: 1.5;            /* Improves readability */
+    text-align: center;
+    /* Centers the text */
+    font-size: 18px;
+    /* Slightly larger for readability */
+    font-weight: 500;
+    /* Medium weight for balance */
+    font-style: italic;
+    /* Adds a refined look */
+    color: #444;
+    /* Dark gray for readability */
+    padding: 5px;
+    /* Adds spacing */
+    /* background-color: #e2dcdc;   /* Light background to make it stand out */
+    border-right: 3px solid #037f45;
+    /* Green left border for emphasis */
+    border-radius: 5px;
+    /* Soft edges */
+    max-width: 80%;
+    /* Keeps it from being too wide */
+    margin: 20px auto;
+    /* Centers it within the page */
+    line-height: 1.5;
+    /* Improves readability */
 }
 
 /* Green Divider */
 .green-divider {
-    border: none; /* Removes default styling */
-    height: 2px; /* Thin line */
-    background-color: #037f45; /* Green color */
-    width: 50%; /* Adjusts width */
-    margin: 20px auto; /* Centers it */
-    border-radius: 5px; /* Smooth edges */
+    border: none;
+    /* Removes default styling */
+    height: 1px;
+    /* Thin line */
+    background-color: #037f45;
+    /* Green color */
+    width: 50%;
+    /* Adjusts width */
+    margin: 20px auto;
+    /* Centers it */
+    border-radius: 5px;
+    /* Smooth edges */
+}
+
+/* Style the file input to look more like a button */
+input[type="file"] {
+    display: inline-block;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    margin-right: 1rem;
+    /* space between file input and button */
+}
+
+/* A generic .btn class for buttons */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #037f45;
+    /* Bootstrap-ish blue */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    /* remove link underline if used on <a> */
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    /* darker blue on hover */
+}
+
+/* (Optional) A small utility class to group form elements in a row */
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    /* spacing between elements */
 }
