@@ -26,13 +26,14 @@ body {
 /* Hero Section */
 .hero {
     width: 100%;
-    height: 350px;
+    height: 250px;
     background-color: #037f45fa;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: white;
-    padding: 0 100px; /* Adds equal left-right spacing */
+    padding-left: 20px; /* Adds equal left-right spacing */
+    padding-right: 20px; /* Adds equal left-right spacing */
     text-align: left;
     overflow: hidden;
 }
@@ -62,7 +63,7 @@ body {
 /* Main Content */
 .content {
     width: 100%;
-    padding: 50px 100px; /* Ensures left and right spacing */
+    padding: 20px 100px; /* Ensures left and right spacing */
 }
 
 /* Navigation Bar */
@@ -155,4 +156,80 @@ body {
 /* Reverse Image Alignment */
 .content-section.reverse .image-content {
     text-align: justify;
+}
+
+.clickable-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping if needed */
+    justify-content: center; /* Centers boxes */
+    gap: 20px; /* Spacing between boxes */
+    padding: 10px 10px; /* Page padding */
+}
+
+.clickable-box {
+    width: 200px; /* Fixed width */
+    height: auto; /* Auto height for dynamic text */
+  /*  background-color: #037f45; */
+    color: #037f45;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.clickable-box img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.clickable-box p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* Intro Text Styling */
+.intro-text {
+    text-align: center;          /* Centers the text */
+    font-size: 18px;             /* Slightly larger for readability */
+    font-weight: 500;            /* Medium weight for balance */
+    font-style: italic;          /* Adds a refined look */
+    color: #444;                 /* Dark gray for readability */
+    padding: 5px;               /* Adds spacing */
+   /* background-color: #e2dcdc;   /* Light background to make it stand out */
+    border-left: 3px solid #037f45; /* Green left border for emphasis */
+    border-radius: 5px;          /* Soft edges */
+    max-width: 80%;              /* Keeps it from being too wide */
+    margin: 20px auto;           /* Centers it within the page */
+    line-height: 1.5;            /* Improves readability */
+}
+
+.intro-text-right {
+    text-align: center;          /* Centers the text */
+    font-size: 18px;             /* Slightly larger for readability */
+    font-weight: 500;            /* Medium weight for balance */
+    font-style: italic;          /* Adds a refined look */
+    color: #444;                 /* Dark gray for readability */
+    padding: 5px;               /* Adds spacing */
+   /* background-color: #e2dcdc;   /* Light background to make it stand out */
+    border-right: 3px solid #037f45; /* Green left border for emphasis */
+    border-radius: 5px;          /* Soft edges */
+    max-width: 80%;              /* Keeps it from being too wide */
+    margin: 20px auto;           /* Centers it within the page */
+    line-height: 1.5;            /* Improves readability */
+}
+
+/* Green Divider */
+.green-divider {
+    border: none; /* Removes default styling */
+    height: 2px; /* Thin line */
+    background-color: #037f45; /* Green color */
+    width: 50%; /* Adjusts width */
+    margin: 20px auto; /* Centers it */
+    border-radius: 5px; /* Smooth edges */
 }
