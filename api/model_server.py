@@ -17,17 +17,18 @@ class_map = {
     4: "Blueberry - Healthy",
     5: "Cherry - Healthy",
     6: "Cherry - Powdery mildew",
-    7: "Potato - Early blight",
-    8: "Potato - Healthy",
-    9: "Potato - Late blight",
-    10: "Raspberry - Healthy",
-    11: "Squash - Powdery mildew",
-    12: "Strawberry - Healthy",
-    13: "Strawberry - Leaf scorch",
-    14: "Tomato - Early blight",
-    15: "Tomato - Healthy",
-    16: "Tomato - Late blight",
-    17: "Tomato - Septoria leaf spot"
+    7: "Bell pepper - Bacterial spot",
+    8: "Bell pepper - Healthy",
+    9: "Potato - Early blight",
+    10: "Potato - Healthy",
+    11: "Potato - Late blight",
+    12: "Raspberry - Healthy",
+    13: "Squash - Powdery mildew",
+    14: "Strawberry - Healthy",
+    15: "Tomato - Early blight",
+    16: "Tomato - Healthy",
+    17: "Tomato - Late blight",
+    18: "Tomato - Septoria leaf spot"
 }
 
 
@@ -44,7 +45,7 @@ def predict():
     confidence = predictions.max()
     predicted_class = predictions.argmax()
 
-    if confidence < 0.6:
+    if confidence < 0.65:
         return jsonify({"result": "The leaf was not recognized", "confidence": float(confidence)})
     else:
         return jsonify({"result": class_map[predicted_class], "confidence": float(confidence)})
