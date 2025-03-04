@@ -43,7 +43,7 @@ body {
 /* Hero Content */
 .hero-content {
     max-width: 60%;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 /* Hero Image */
@@ -75,38 +75,64 @@ body {
 .navbar {
     display: flex;
     justify-content: center;
+    /* Center the navbar content */
     align-items: center;
     background-color: white;
     width: 100%;
-    padding: 10px 0;
+    padding: 8px 20px;
+    /* Consistent padding */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Keep the shadow */
 }
 
+/* Navbar Links Container */
 .navbar-nav {
     display: flex;
-    gap: 20px;
-    list-style: none;
     justify-content: space-around;
+    /* Spread links evenly across the navbar */
+    align-items: center;
+    list-style: none;
     width: 100%;
+    /* Ensure the links take up the full width */
+    margin: 0;
+    padding: 0;
 }
 
+/* Nav Item */
 .nav-item {
-    flex-grow: 1;
+    flex: 1;
+    /* Each item takes equal space */
     text-align: center;
 }
 
+/* Nav Link */
 .nav-link {
     text-decoration: none;
-    color: #000;
-    font-weight: bold;
-    font-size: 16px;
+    color: #037f45;
+    /* Dark green text */
+    font-weight: 600;
+    /* Modern weight */
+    font-size: 14px;
     padding: 5px 10px;
     border-radius: 5px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    /* Smooth hover transition */
 }
 
+/* Hover Effect for Nav Links */
 .nav-link:hover {
+    color: #037f45;
+    /* Green on hover */
     background-color: #f0f0f0;
-    color: #007BFF;
+    /* Light gray background on hover */
+}
+
+/* Active Link Styling */
+.nav-link.active {
+    color: #037f45;
+    /* Green to indicate active page */
+    border-bottom: 2px solid #037f45;
+    /* Underline for active page */
 }
 
 /* Sidebar */
@@ -178,63 +204,24 @@ body {
     /* Page padding */
 }
 
-.clickable-box {
-    width: 200px;
-    /* Fixed width */
-    height: auto;
-    /* Auto height for dynamic text */
-    /*  background-color: #037f45; */
-    color: #037f45;
-    text-align: center;
-    padding: 15px;
-    border-radius: 10px;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-}
 
-.clickable-box img {
-    width: 150px;
-    height: 150px;
-    object-fit: contain;
-}
-
-.clickable-box p {
-    margin-top: 10px;
-    font-size: 16px;
-}
 
 /* Intro Text Styling */
 .intro-text {
     text-align: center;
-    /* Centers the text */
     font-size: 18px;
-    /* Slightly larger for readability */
-    font-weight: 500;
-    /* Medium weight for balance */
-    font-style: italic;
-    /* Adds a refined look */
-    color: #444;
-    /* Dark gray for readability */
-    padding: 5px;
-    /* Adds spacing */
-    /* background-color: #e2dcdc;   /* Light background to make it stand out */
-    border-left: 3px solid #037f45;
-    /* Green left border for emphasis */
-    border-right: 3px solid #037f45;
-    /* Green left border for emphasis */
-    border-radius: 5px;
-    /* Soft edges */
+    color: #037f45;
+    /* Dark green text */
+    padding: 15px;
     max-width: 80%;
-    /* Keeps it from being too wide */
     margin: 20px auto;
-    /* Centers it within the page */
     line-height: 1.5;
-    /* Improves readability */
+    font-weight: 500;
+    background: rgba(3, 127, 69, 0.1);
+    /* Very light green background */
+    border-radius: 8px;
 }
+
 
 /* Intro Text Styling */
 .main-text {
@@ -371,4 +358,43 @@ input[type="file"] {
     justify-content: center;
     gap: 1rem;
     /* spacing between elements */
+}
+
+.clickable-box {
+    width: 200px;
+    /* Fixed width */
+    height: auto;
+    /* Auto height for dynamic text */
+    background-color: rgba(3, 127, 69, 0.1);
+    /* Very light green background */
+    color: #037f45;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Updated transition for shadow and scale */
+}
+
+/* Hover effect for clickable box */
+.clickable-box:hover {
+    transform: scale(1.05);
+    /* Slight scale-up on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    /* Subtle shadow on hover */
+}
+
+.clickable-box img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.clickable-box p {
+    margin-top: 10px;
+    font-size: 16px;
 }

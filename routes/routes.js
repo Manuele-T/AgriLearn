@@ -17,6 +17,8 @@ router.get('/about', (req, res) => res.render('about'));
 router.get('/agricultureUK', (req, res) => res.render('agricultureUK'));
 router.get('/tips', (req, res) => res.render('tips'));
 router.get('/analyse', (req, res) => res.render('analyse'));
+router.get('/allcrops', (req, res) => res.render('allcrops'));
+
 
 
 // Crop details route
