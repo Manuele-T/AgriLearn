@@ -31,7 +31,6 @@ class_map = {
     18: "Tomato - Septoria leaf spot"
 }
 
-
 # Predict route
 @app.route('/predict', methods=['POST'])
 def predict():

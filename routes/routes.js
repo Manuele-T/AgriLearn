@@ -19,7 +19,14 @@ router.get('/tips', (req, res) => res.render('tips'));
 router.get('/analyse', (req, res) => res.render('analyse'));
 router.get('/allcrops', (req, res) => res.render('allcrops'));
 
-
+router.get('/crops/apple', (req, res) => res.render('crops/apple'));
+router.get('/crops/blueberry', (req, res) => res.render('crops/blueberry'));
+router.get('/crops/cherry', (req, res) => res.render('crops/cherry'));
+router.get('/crops/bellpepper', (req, res) => res.render('crops/bellpepper'));
+router.get('/crops/potato', (req, res) => res.render('crops/potato'));
+router.get('/crops/strawberry', (req, res) => res.render('crops/strawberry'));
+router.get('/crops/tomato', (req, res) => res.render('crops/tomato'));
+router.get('/crops/raspberry', (req, res) => res.render('crops/raspberry'));
 
 // Crop details route
 router.get('/crops/:cropId', cropController.getCropDetails);
