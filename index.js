@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const routes = require("./routes/routes.js");
-const cropsDB = require("./models/cropModel.js"); // Use require for CommonJS
+const helmet = require('helmet');
 
 // Configure Handlebars
 const expressHandlebars = require("express-handlebars");
@@ -26,20 +26,15 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/css", express.static(path.join(__dirname, "./node_modules/bootstrap/dist/css")));
 app.use("/js", express.static(path.join(__dirname, "./node_modules/bootstrap/dist/js")));
 
-// Middleware to fetch crops for the side menu
-app.use((req, res, next) => {
-    cropsDB.find({}, { _id: 1, name: 1 }, (err, crops) => {
-        if (err) {
-            console.error("Error fetching crops:", err);
-            crops = []; // Fallback to an empty list
-        }
-        res.locals.crops = crops; // Pass crops to all templates
-        next();
-    });
-});
-
 // Use routes
 app.use("/", routes);
+
+app.use('/uploads', express.static('uploads'));
+
+
+// Use helmet
+app.use(helmet());
+
 
 // Start server
 app.listen(process.env.PORT || 3000, () => console.log("Server running on port 3000."));

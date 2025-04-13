@@ -6,7 +6,7 @@ import numpy as np
 app = Flask(__name__)
 
 # Load the ML model
-model = load_model('ML_Model/improved_model.h5')
+model = load_model('ML_Model/improved_model_24_classes.keras')
 
 # Class mapping
 class_map = {
@@ -17,18 +17,23 @@ class_map = {
     4: "Blueberry - Healthy",
     5: "Cherry - Healthy",
     6: "Cherry - Powdery mildew",
-    7: "Bell pepper - Bacterial spot",
-    8: "Bell pepper - Healthy",
-    9: "Potato - Early blight",
-    10: "Potato - Healthy",
-    11: "Potato - Late blight",
-    12: "Raspberry - Healthy",
-    13: "Squash - Powdery mildew",
-    14: "Strawberry - Healthy",
-    15: "Tomato - Early blight",
-    16: "Tomato - Healthy",
-    17: "Tomato - Late blight",
-    18: "Tomato - Septoria leaf spot"
+    7: "Grape - Black rot",
+    8: "Grape - Esca (Black Measles)",
+    9: "Grape - Healthy",
+    10: "Peach - Bacterial spot",
+    11: "Peach - Healthy",
+    12: "Bell Pepper - Bacterial spot",
+    13: "Bell Pepper - Healthy",
+    14: "Potato - Early blight",
+    15: "Potato - Healthy",
+    16: "Potato - Late blight",
+    17: "Raspberry - Healthy",
+    18: "Strawberry - Healthy",
+    19: "Strawberry - Leaf scorch",
+    20: "Tomato - Early blight",
+    21: "Tomato - Healthy",
+    22: "Tomato - Late blight",
+    23: "Tomato - Septoria leaf spot"
 }
 
 # Predict route
@@ -44,7 +49,7 @@ def predict():
     confidence = predictions.max()
     predicted_class = predictions.argmax()
 
-    if confidence < 0.65:
+    if confidence < 0.55:
         return jsonify({"result": "The leaf was not recognized", "confidence": float(confidence)})
     else:
         return jsonify({"result": class_map[predicted_class], "confidence": float(confidence)})

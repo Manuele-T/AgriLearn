@@ -20,11 +20,38 @@
             </b></p>
 </div>
 
-<!-- Upload Form -->
-<form class="form-row" action="/upload" method="POST" enctype="multipart/form-data">
-    <input type="file" name="image" required>
+<form class="form-row" id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="image" id="imageInput" required>
     <button type="submit" class="btn">Upload Picture</button>
 </form>
+
+<script>
+document.getElementById("uploadForm").addEventListener("submit", function(event) {
+  const fileInput = document.getElementById("imageInput");
+  const file = fileInput.files[0];
+
+  if (!file) {
+    alert("Please select a file.");
+    event.preventDefault();
+    return;
+  }
+
+  const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/heic", "image/heif"];
+  const maxSize = 5 * 1024 * 1024; // 5MB
+
+  if (!allowedTypes.includes(file.type)) {
+    alert("Unsupported file type. Only JPEG, PNG, HEIC, and HEIF are allowed.");
+    event.preventDefault();
+    return;
+  }
+
+  if (file.size > maxSize) {
+    alert("File too large. Maximum size is 5MB.");
+    event.preventDefault();
+    return;
+  }
+});
+</script>
 
 <div class="intro-text" style="text-align: justify;">
     <p><b>
@@ -33,3 +60,9 @@
                 not guaranteed to be 100% accurate.
             </b></p>
 </div>
+
+{{#if error}}
+<script>
+  alert("{{error}}");
+</script>
+{{/if}}

@@ -5,30 +5,63 @@ const path = require("path");
 const sharp = require("sharp");
 const convert = require("heic-convert");
 
+// Set up multer storage
 const storage = multer.diskStorage({
   destination: "uploads/",
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
   }
 });
-const upload = multer({ storage });
+
+// Set up file filter to allow only JPEG, PNG, HEIC, HEIF
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/heic", "image/heif"];
+  if (allowedTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(new Error("Unsupported file type. Only JPEG, PNG, HEIC, and HEIF are allowed."), false);
+  }
+};
+
+// Final multer setup: storage, size limit, file filter
+const upload = multer({ 
+  storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  fileFilter
+});
 
 module.exports.uploadImage = [
-  upload.single("image"),
+  (req, res, next) => {
+    upload.single("image")(req, res, function (err) {
+      if (err) {
+        console.error("❌ Upload error:", err.message);
+        return res.status(400).render("analyse", { 
+          title: "Analyse Your Leaf", 
+          error: err.message 
+        });
+      }
+      if (!req.file) {
+        return res.status(400).render("analyse", { 
+          title: "Analyse Your Leaf", 
+          error: "No file uploaded. Please select an image." 
+        });
+      }
+      next();
+    });
+  },
   async (req, res) => {
     let filePath = req.file.path;
     const outputFilePath = `uploads/${Date.now()}-converted.jpg`;
 
-    // Log details to see what’s really being uploaded
     console.log("Original filename:", req.file.originalname);
     console.log("MIME type:", req.file.mimetype);
     console.log("File path:", filePath);
 
     try {
-      // 1) Detect HEIC by MIME or extension
+      // Detect file extension
       const fileExt = path.extname(req.file.originalname).toLowerCase();
 
-      // Convert HEIC if either MIME or file extension indicates HEIC
+      // HEIC/HEIF conversion
       if (
         req.file.mimetype.includes("heic") ||
         req.file.mimetype.includes("heif") ||
@@ -36,33 +69,26 @@ module.exports.uploadImage = [
         fileExt === ".heif"
       ) {
         console.log("🔄 Converting HEIC/HEIF to JPEG...");
-
-        // Read & convert with 'heic-convert'
         const inputBuffer = fs.readFileSync(filePath);
         const outputBuffer = await convert({
           buffer: inputBuffer,
           format: "JPEG",
         });
-
         fs.writeFileSync(outputFilePath, outputBuffer);
-        filePath = outputFilePath; // Use the new JPEG path
-
+        filePath = outputFilePath;
         console.log("✅ HEIC/HEIF conversion done! New file:", filePath);
       }
-      // 2) Convert PNG with sharp (optional)
+      // PNG conversion
       else if (req.file.mimetype.includes("png") || fileExt === ".png") {
         console.log("🔄 Converting PNG to JPEG...");
-
         await sharp(filePath)
           .toFormat("jpeg")
           .toFile(outputFilePath);
-
-        filePath = outputFilePath; // Use the new JPEG path
-
+        filePath = outputFilePath;
         console.log("✅ PNG conversion done! New file:", filePath);
       }
 
-      // 3) Send the (possibly converted) file to Python
+      // Send file to Python server
       const fetch = (...args) =>
         import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
@@ -77,33 +103,40 @@ module.exports.uploadImage = [
 
       const analysisResult = await response.json();
 
-      // 4) Cleanup: Delete both the original & converted files
-      try {
-        fs.unlinkSync(req.file.path); // Delete the original uploaded file
-        if (filePath !== req.file.path) {
-          fs.unlinkSync(filePath); // Delete the converted file if different
-        }
-        console.log("🗑️ Files deleted successfully!");
-      } catch (unlinkError) {
-        console.error("❌ Error deleting file:", unlinkError);
-      }
-
-      // 5) Render results
+      // Render analysis result and show uploaded image
       res.render("results", {
         title: "Analysis Results",
         cropName: analysisResult.result,
         status: analysisResult.confidence,
+        imagePath: "/" + filePath // Pass image path to view
       });
+
+      // Delete files after 30 seconds
+      setTimeout(() => {
+        try {
+          if (fs.existsSync(req.file.path)) {
+            fs.unlinkSync(req.file.path);
+          }
+          if (filePath !== req.file.path && fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+          }
+          console.log("🗑️ Files deleted after 10 seconds!");
+        } catch (unlinkError) {
+          console.error("❌ Error deleting file after delay:", unlinkError);
+        }
+      }, 10000);
 
     } catch (err) {
       console.error("❌ Error processing image:", err);
       res.status(500).send("Error processing the image");
 
-      // Cleanup in case of errors
+      // Attempt cleanup on error immediately
       try {
-        fs.unlinkSync(req.file.path); // Ensure the original file is deleted
-        if (filePath !== req.file.path) {
-          fs.unlinkSync(filePath); // Delete the converted file if different
+        if (req.file && req.file.path && fs.existsSync(req.file.path)) {
+          fs.unlinkSync(req.file.path);
+        }
+        if (filePath && filePath !== req.file.path && fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
         }
       } catch (unlinkError) {
         console.error("❌ Error deleting file after failure:", unlinkError);
