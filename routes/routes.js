@@ -7,9 +7,7 @@ const homeController = require(path.join(__dirname, '../controllers/homeControll
 const resultController = require(path.join(__dirname, '../controllers/resultController'));
 
 // Home route with Hero Section
-router.get('/', (req, res) => {
-    res.render('home', { heroImage: '/img/home.jpg' });
-});
+router.get('/', (req, res) => res.render('home'));
 
 // Static pages (no Hero by default)
 router.get('/about', (req, res) => res.render('about'));
