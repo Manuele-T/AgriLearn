@@ -2,14 +2,11 @@ const express = require('express');
 const path = require('path'); 
 const router = express.Router();
 
-// Import controllers with correct paths
-const homeController = require(path.join(__dirname, '../controllers/homeController'));
+// Import resultController
 const resultController = require(path.join(__dirname, '../controllers/resultController'));
 
-// Home route with Hero Section
+// Routes
 router.get('/', (req, res) => res.render('home'));
-
-// Static pages (no Hero by default)
 router.get('/about', (req, res) => res.render('about'));
 router.get('/agricultureUK', (req, res) => res.render('agricultureUK'));
 router.get('/tips', (req, res) => res.render('tips'));

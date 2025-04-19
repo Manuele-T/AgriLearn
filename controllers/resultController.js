@@ -23,7 +23,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// Final multer setup: storage, size limit, file filter
+// multer setup: storage, size limit, file filter
 const upload = multer({ 
   storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
@@ -111,7 +111,7 @@ module.exports.uploadImage = [
         imagePath: "/" + filePath // Pass image path to view
       });
 
-      // Delete files after 30 seconds
+      // Delete files after 10 seconds
       setTimeout(() => {
         try {
           if (fs.existsSync(req.file.path)) {
