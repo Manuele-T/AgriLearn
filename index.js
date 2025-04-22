@@ -1,11 +1,12 @@
-require("dotenv").config(); // Load environment variables
+// initial app setup
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const app = express();
 const routes = require("./routes/routes.js");
 const helmet = require('helmet');
 
-// Configure Handlebars
+// configure Handlebars
 const expressHandlebars = require("express-handlebars");
 const hbs = expressHandlebars.create({
     extname: ".hbs",
@@ -18,23 +19,21 @@ app.engine(".hbs", hbs.engine);
 app.set("view engine", ".hbs");
 app.set("views", path.join(__dirname, "views"));
 
-// Middleware
+// middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Bootstrap static assets
+// bootstrap static assets
 app.use("/css", express.static(path.join(__dirname, "./node_modules/bootstrap/dist/css")));
 app.use("/js", express.static(path.join(__dirname, "./node_modules/bootstrap/dist/js")));
 
-// Use routes
+// use routes
 app.use("/", routes);
-
+// use uploads folder
 app.use('/uploads', express.static('uploads'));
 
-
-// Use helmet
+// use helmet
 app.use(helmet());
-
 
 // Start server
 app.listen(process.env.PORT || 3000, () => console.log("Server running on port 3000."));

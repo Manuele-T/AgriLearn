@@ -30,11 +30,12 @@ const upload = multer({
   fileFilter
 });
 
+// upload image
 module.exports.uploadImage = [
   (req, res, next) => {
     upload.single("image")(req, res, function (err) {
       if (err) {
-        console.error("❌ Upload error:", err.message);
+        console.error("Upload error:", err.message);
         return res.status(400).render("analyse", { 
           title: "Analyse Your Leaf", 
           error: err.message 
@@ -52,7 +53,7 @@ module.exports.uploadImage = [
   async (req, res) => {
     let filePath = req.file.path;
     const outputFilePath = `uploads/${Date.now()}-converted.jpg`;
-
+    // console logs
     console.log("Original filename:", req.file.originalname);
     console.log("MIME type:", req.file.mimetype);
     console.log("File path:", filePath);
@@ -76,7 +77,7 @@ module.exports.uploadImage = [
         });
         fs.writeFileSync(outputFilePath, outputBuffer);
         filePath = outputFilePath;
-        console.log("✅ HEIC/HEIF conversion done! New file:", filePath);
+        console.log("HEIC/HEIF conversion done! New file:", filePath);
       }
       // PNG conversion
       else if (req.file.mimetype.includes("png") || fileExt === ".png") {
@@ -85,10 +86,10 @@ module.exports.uploadImage = [
           .toFormat("jpeg")
           .toFile(outputFilePath);
         filePath = outputFilePath;
-        console.log("✅ PNG conversion done! New file:", filePath);
+        console.log("PNG conversion done! New file:", filePath);
       }
 
-      // Send file to Python server
+      // Send file to Python server/framework
       const fetch = (...args) =>
         import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
@@ -103,12 +104,19 @@ module.exports.uploadImage = [
 
       const analysisResult = await response.json();
 
+      // Extract crop page if result is valid
+      let cropPage = null;
+      if (analysisResult.result !== "The leaf was not recognized") {
+        cropPage = analysisResult.result.split(" - ")[0].toLowerCase();
+      }
+
       // Render analysis result and show uploaded image
       res.render("results", {
         title: "Analysis Results",
         cropName: analysisResult.result,
         status: analysisResult.confidence,
-        imagePath: "/" + filePath // Pass image path to view
+        imagePath: "/" + filePath,
+        cropPage
       });
 
       // Delete files after 10 seconds
@@ -120,17 +128,17 @@ module.exports.uploadImage = [
           if (filePath !== req.file.path && fs.existsSync(filePath)) {
             fs.unlinkSync(filePath);
           }
-          console.log("🗑️ Files deleted after 10 seconds!");
+          console.log("🗑️ Files deleted after 10 seconds");
         } catch (unlinkError) {
-          console.error("❌ Error deleting file after delay:", unlinkError);
+          console.error("Error deleting file after delay:", unlinkError);
         }
       }, 10000);
 
     } catch (err) {
-      console.error("❌ Error processing image:", err);
+      console.error("Error processing image:", err);
       res.status(500).send("Error processing the image");
 
-      // Attempt cleanup on error immediately
+      // Attempt cleanup on error
       try {
         if (req.file && req.file.path && fs.existsSync(req.file.path)) {
           fs.unlinkSync(req.file.path);
@@ -139,7 +147,7 @@ module.exports.uploadImage = [
           fs.unlinkSync(filePath);
         }
       } catch (unlinkError) {
-        console.error("❌ Error deleting file after failure:", unlinkError);
+        console.error("Error deleting file after failure:", unlinkError);
       }
     }
   },
